@@ -30,7 +30,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(60), unique=True)
     password = db.Column(db.String(120))
-    blogs.db.relationship("Blog", backref="owner") # ties individual user ID to blog posts
+    blog = db.relationship("Blog", backref="owner")
 
     def __init__(self, username, password):
         self.username = username
@@ -38,7 +38,8 @@ class User(db.Model):
 
 @app.route('/')
 def index():
-    return redirect('/blog')
+    users = User.query.all()
+    return render_template('index.html', users=users)
 
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
@@ -46,6 +47,7 @@ def signup():
     username = request.form["username"]
     password = request.form["password"]
     verify = request.form["verify"]
+
     username_error = ""
     password_error = ""
     verify_error = ""
@@ -75,7 +77,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         session['username'] = username
-        return redirect("/newpost")
+        return redirect("/post")
     else:
         return render_template(
             'signup.html',
@@ -84,6 +86,35 @@ def signup():
             password_error = password_error,
             verify_error = verify_error,)
     return render_template('signup.html')
+
+@app.route("/login", methods=['POST', 'GET'])
+def login():
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+
+        username_error = ""
+        password_error = ""
+
+        if user and user.password == password:
+            session['username'] = username
+            return redirect('/post')
+        if not user:
+            username = ""
+            username_error = "Incorrect Username"
+        if password != user.password:
+            password = ""
+            password_error = "Incorrect Password"
+        else:
+            return render_template("login.html",
+                username = username,
+                password = password,
+                username_error = username_error,
+                password_error = password_error
+        )
+    return render_template("login.html")
 
 @app.route('/blog')
 def blog_index():
@@ -130,6 +161,11 @@ def verify_post():
         return redirect('/blog?id={0}'.format(blog))
     else:
         return render_template('post.html', title="Add New Blog Entry", blog_title = blog_title, blog_body = blog_body, title_error = title_error, body_error = body_error)
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect('/blog')
 
 if __name__ == '__main__':
     app.run()
