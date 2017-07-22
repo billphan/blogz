@@ -5,32 +5,85 @@ from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-
+# connection string info - ://user:password@server:portNumber/databaseName
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:blogz@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key = 'xfd{H\xe5<\xf9\x6a2\xa0\x9fR"\xa1\xa8'
 
+# class for blog database
 class Blog(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(1200))
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created = db.Column(db.DateTime)
 
     def __init__(self, title, body):
         self.title = title
         self.body = body
+        self.owner = owner
         self.created = datetime.utcnow()
 
-    def is_valid(self):
-        if self.title and self.body and self.created:
-            return True
-        else:
-            return False
+# class for users database
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(60), unique=True)
+    password = db.Column(db.String(120))
+    blogs.db.relationship("Blog", backref="owner") # ties individual user ID to blog posts
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 @app.route('/')
 def index():
     return redirect('/blog')
+
+@app.route("/signup", methods=['POST', 'GET'])
+def signup():
+
+    username = request.form["username"]
+    password = request.form["password"]
+    verify = request.form["verify"]
+    username_error = ""
+    password_error = ""
+    verify_error = ""
+
+    if username == "": # Validate Username
+        username_error = "Please enter a valid username."
+    elif len(username) <= 3 or len(username) > 20:
+        username_error = "Username must be between 3 and 20 characters long."
+        username = ""
+    elif " " in username:
+        username_error = "Your username cannot contain any spaces."
+        username = ""
+
+    if password == "": # Validate Password
+        password_error = "Please enter a valid password."
+    elif len(password) < 3 or len(password) > 20:
+        password_error = "Password must be between 3 and 20 characters long."
+    elif " " in password:
+        password_error = "Your password cannot contain any spaces."
+
+    if verify == "" or verify != password: # Verify Password
+        verify_error = "Passwords do not match. Please try again."
+        verify = ""
+
+    if not username_error and not password_error and not verify_error:
+        new_user = User(username, password)
+        db.session.add(new_user)
+        db.session.commit()
+        session['username'] = username
+        return redirect("/newpost")
+    else:
+        return render_template(
+            'signup.html',
+            username = username,
+            username_error = username_error,
+            password_error = password_error,
+            verify_error = verify_error,)
+    return render_template('signup.html')
 
 @app.route('/blog')
 def blog_index():
