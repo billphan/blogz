@@ -288,7 +288,7 @@ p.signup-text {
 /* SIGNUP PAGE STYLES */
 
 .container .signup {
-  width: 300px;
+  width: 340px;
   display: block;
   margin: 0 auto;
   padding-top: 75px;
@@ -302,7 +302,7 @@ p.signup-text {
 
 .container .signup p {
   font-size: 14px;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 p.signup-text {
