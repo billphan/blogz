@@ -180,6 +180,10 @@ input[type=submit]:hover {
   -webkit-transition: 0.25s ease-in-out;
 }
 
+/* LOGIN PAGE STYLES */
+
+
+
 @media (max-width:720px) {
 
   .container {
