@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from hashutils import make_pw_hash, check_pw_hash
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -27,12 +28,12 @@ class Blog(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(120))
+    pw_hash = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref='owner')
 
     def __init__(self, username, password):
         self.username = username
-        self.password = password
+        self.pw_hash = make_pw_hash(password)
 
 @app.before_request
 def require_login():
@@ -45,6 +46,18 @@ def index():
     users = User.query.all()
     return render_template('index.html', users=users)
 
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/login', methods=['POST','GET'])
 def login():
     username_error = ""
@@ -53,17 +66,27 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        compare = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first()
 
-        if compare:
-            if password != compare.password:
+        if user and check_pw_hash(password, user.pw_hash):
+            if password != user.password:
                 return render_template('login.html', password_error="Your username or password was incorrect.")
-            elif password == compare.password:
+            elif password == user.password:
                 session['username'] = username
                 return redirect('/newpost')
         return render_template('login.html', username_error="Your username or password was incorrect.")
 
     return render_template("login.html")
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
