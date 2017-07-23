@@ -29,12 +29,14 @@
 
       <nav class="header">
 
-        <h1 class="title"><a href="/blog">Build a Blog</a></h1>
-        <a href="/post" class="left">Add New Post</a>
-        <a href="/blog?sort=oldest" class="right">Oldest</a>
-        <a href="/blog?sort=newest" class="right newest">Newest</a>
+        <h1 class="title"><a href="/">Blogz!</a></h1>
+        <a href="/blog" class="left newest">View All Posts</a>
+        <a href="/newpost">Add New Post</a>
+        <a href="/logout" class="right">Logout</a>
+        <a href="/login" class="right newest">Login</a>
 
       </nav>
+
       {% block content %}
       {% endblock %}
 
