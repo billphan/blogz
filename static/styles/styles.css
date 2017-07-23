@@ -1,4 +1,5 @@
-/*  GENERAL STYLES  */
+/*  GLOBAL/BASE STYLES  */
+
 :root {
   --accent: #95c76f;
 }
@@ -7,9 +8,11 @@
   background: #95c76f;
 }
 
-.error {
-  color: red;
-  display: inline-block;
+p.error {
+  color: #aeaeae;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 15px;
 }
 
 * {
@@ -57,11 +60,10 @@ a:focus, a:hover {
   float: right;
 }
 
-.newest {
+.spacing {
   padding-right: 25px;
 }
 
-/* INDEX PAGE STYLES */
 .header {
   clear: both;
   width: 100%;
@@ -95,7 +97,29 @@ h1.title {
   -ms-flex-flow: column nowrap;
 }
 
-.content {
+.post {
+  width: 100%;
+  height: auto;
+  margin: 35px 0;
+}
+
+p.body-text {
+  font-size: 14px;
+}
+
+p.pub-date {
+  color: #999;
+  font-size: 12px;
+}
+
+p.user {
+  color: #999;
+  font-size: 12px;
+}
+
+/* INDEX PAGE STYLES */
+
+.index {
   clear: both;
   width: 100%;
   height: 100%;
@@ -104,22 +128,43 @@ h1.title {
   padding-right: 1.5rem;
 }
 
-.content-text {
+.index h1 {
+  font-size: 24px;;
+}
+
+.index p.users {
+  font-size: 18px;
+  padding: 5px 0px;
+}
+
+/* BLOG PAGE STYLES */
+
+.blog {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.blog-text {
   clear: both;
   height: 100%;
   min-width: 75vw;
   max-width: 30em;
 }
 
-.content h1 {
-  font-size: 28px;
+.blog h1 {
+  font-size: 24px;
 }
 
-.created {
-  font-size: 12px;
+.blog h2 {
+  font-size: 24px;
 }
 
 /* POST PAGE STYLES */
+
 h1.post-header {
   margin: 0;
   padding: 0 0 25px 0;
@@ -141,6 +186,27 @@ input[type=text] {
 }
 
 input[type=text]:focus {
+  border-color: #74a7ff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=password] {
+  border: 0;
+  outline: 0;
+  color: #000;
+  width: 100%;
+  float: right;
+  padding: 5px;
+  margin: 15px 0;
+  line-height: normal;
+  background: transparent;
+  border-bottom: 1px solid #313842;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=password]:focus {
   border-color: #74a7ff;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -182,7 +248,104 @@ input[type=submit]:hover {
 
 /* LOGIN PAGE STYLES */
 
+.container .login {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 75px;
+}
 
+.login h1 {
+  font-size: 24px;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.container .login p {
+  font-size: 14px;
+  text-align: center;
+}
+
+p.signup-text {
+  padding-top: 20px;
+}
+
+/* NEW POST PAGE */
+
+.new-post {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.new-post h1 {
+  font-size: 24px;;
+}
+
+/* SIGNUP PAGE STYLES */
+
+.container .signup {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 75px;
+}
+
+.signup h1 {
+  font-size: 26px;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.container .signup p {
+  font-size: 14px;
+  text-align: center;
+}
+
+p.signup-text {
+  padding-top: 20px;
+}
+
+/* INDIVIDUAL USERS PAGE STYLES */
+
+.single-user {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.single-user-text {
+  clear: both;
+  height: 100%;
+  min-width: 75vw;
+  max-width: 30em;
+}
+
+.single-user h1 {
+  font-size: 24px;
+}
+
+.single-user h2 {
+  font-size: 24px;
+}
+
+.pub-date {
+  font-size: 12px;
+  color: #aeaeae;
+}
+
+.user {
+  color: #aeaeae;
+  font-size: 12px;
+}
+
+/* MEDIA QUERIES */
 
 @media (max-width:720px) {
 
