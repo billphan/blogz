@@ -1,21 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-      <div class="content content-text">
+<div class="content content-text wow fadeIn">
 
-        <h1 class="post-header">New Post</h1>
+  <h2>{{ title }}</h2>
+  <p>{{ body }}</p>
+  <p>{{ pub_date }}</p>
+  <p class='user'>Posted by: <a href="/blog?userid={{user_id}}">{{ user }}</a></p>
 
-        <form method='post'>
-          
-          <input type="text" name="title" value='{{blog_title}}' placeholder="Your Title Here"/>
-          <p class="error">{{title_error}}</p><br><br>
-
-          <textarea type="text" name="body" placeholder="Your Text Here">{{blog_body}}</textarea>
-          <p class="error">{{body_error}}</p><br>
-
-          <input type="submit" value="Post"/>
-
-        </form>
-
-      </div>
+</div>
 {% endblock %}

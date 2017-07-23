@@ -1,18 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-      <div class="content content-text wow fadeIn">
-        {% if blogs|length == 0 %}
-        <p>No blogs yet</p>
-        {% endif %}
-        {% for blog in blogs %}
-        <h1><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h1>
+<div class="content content-text wow fadeIn">
 
-        <p>{{blog.body}}</p>
+  <h1>Posts</h1>
+  {% for post in posts %}
+  <a href="/blog?id={{post.id}}"><p><h2>{{ post.title }}</h2></p></a>
+  <p>{{ post.body }}</p>
+  <p>{{ post.pub_date }}</p>
+  <p class='user'>Posted by: <a href="/blog?userid={{post.owner_id}}">{{ post.owner.username }}</a></p>
+  {% endfor %}
 
-        <p class="pub-date">Posted on: {{blog.created}}</p>
-
-        <hr>
-        {% endfor %}
-      </div>
+</div>
 {% endblock %}

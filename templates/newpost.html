@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+      <div class="content content-text">
+
+        <h1 class="post-header">New Post</h1>
+
+        <form method='post'>
+
+          <input type="text" name="title" value='{{blog_title}}' placeholder="Your Title Here"/>
+          <p class="error">{{title_error}}</p><br><br>
+
+          <textarea type="text" name="body" placeholder="Your Text Here">{{blog_body}}</textarea>
+          <p class="error">{{body_error}}</p><br>
+
+          <input type="submit" value="Post"/>
+
+        </form>
+
+      </div>
+{% endblock %}
