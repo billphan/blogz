@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="content content-text wow fadeIn">
+      <div class="content content-text wow fadeIn">
 
-  <h2>{{ title }}</h2>
-  <p>{{ body }}</p>
-  <p>{{ pub_date }}</p>
-  <p class='user'>Posted by: <a href="/blog?userid={{user_id}}">{{ user }}</a></p>
+        <h2>{{ title }}</h2>
+        <p>{{ body }}</p>
+        <p>{{ pub_date }}</p>
+        <p class='user'>Posted by: <a href="/blog?userid={{user_id}}">{{ user }}</a></p>
 
-</div>
+      </div>
 {% endblock %}

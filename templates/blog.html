@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="content content-text wow fadeIn">
+      <div class="blog blog-text wow fadeIn">
 
-  <h1>Posts</h1>
-  {% for post in posts %}
-  <a href="/blog?id={{post.id}}"><p><h2>{{ post.title }}</h2></p></a>
-  <p>{{ post.body }}</p>
-  <p>{{ post.pub_date }}</p>
-  <p class='user'>Posted by: <a href="/blog?userid={{post.owner_id}}">{{ post.owner.username }}</a></p>
-  {% endfor %}
+        <h1>User Posts</h1>
 
-</div>
+        <hr>
+
+          {% for post in posts %}
+          <div class="post">
+
+            <a href="/blog?id={{post.id}}"><p><h2>{{ post.title }}</h2></p></a>
+            <p class="body-text">{{ post.body }}</p>
+            <p class="pub-date">{{ post.pub_date }}</p>
+            <p class="user">Posted by: <a href="/blog?userid={{post.owner_id}}">{{ post.owner.username }}</a></p>
+
+          </div>
+          {% endfor %}
+      </div>
 {% endblock %}

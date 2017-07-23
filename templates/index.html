@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Users</h1>
-{% for user in users %}
-<p><a href="/blog?userid={{user.id}}">{{ user.username }}</a></p>
-{% endfor %}
+      <div class="index wow fadeIn">
+        <h1>Visitors</h1>
+        <hr>
+        {% for user in users %}
+        <p class="users"><a href="/blog?userid={{user.id}}">{{ user.username }}</a></p>
+        {% endfor %}
+      </div>
 {% endblock %}
