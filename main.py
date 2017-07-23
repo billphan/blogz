@@ -46,96 +46,67 @@ def index():
     users = User.query.all()
     return render_template('index.html', users=users)
 
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/login', methods=['POST','GET'])
 def login():
     username_error = ""
     password_error = ""
 
     if request.method == 'POST':
-        username = request.form['username']
         password = request.form['password']
+        username = request.form['username']
         user = User.query.filter_by(username=username).first()
 
         if user and check_pw_hash(password, user.pw_hash):
-            if password != user.password:
-                return render_template('login.html', password_error="Your username or password was incorrect.")
-            elif password == user.password:
-                session['username'] = username
-                return redirect('/newpost')
-        return render_template('login.html', username_error="Your username or password was incorrect.")
+            session['username'] = username
+            return redirect('/newpost')
+        if not user:
+            return render_template('login.html', username_error="Your username or password was incorrect.")
+        else:
+            return render_template('login.html', password_error="Your username or password was incorrect.")
 
-    return render_template("login.html")
-
-
-
-
-
-
-
-
-
-
+    return render_template('login.html')
 
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        verify = request.form["verify"]
-        exist_error = User.query.filter_by(username=username).first()
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        verify = request.form['verify']
+        exist = User.query.filter_by(username=username).first()
 
         username_error = ""
         password_error = ""
         verify_error = ""
 
-        if username == "": # Validate Username
-            username_error = "Please enter a valid username."
+        if username == "":
+            username_error = "Please enter a username."
         elif len(username) <= 3 or len(username) > 20:
             username_error = "Username must be between 3 and 20 characters long."
-            username = ""
         elif " " in username:
-            username_error = "Your username cannot contain any spaces."
-            username = ""
-        else: # Validate existing username.
-            if exist_error:
-                username_error = "Username already taken. Please try another."
-                username = ""
-        if password == "": # Validate Password
-            password_error = "Please enter a valid password."
-        elif len(password) < 3 or len(password) > 20:
-            password_error = "Password must be between 3 and 20 characters long."
+            username_error = "Username cannot contain any spaces."
+        if password == "":
+            password_error = "Please enter a password."
+        elif len(password) <= 3:
+            password_error = "Password must be greater than 3 characters long."
         elif " " in password:
-            password_error = "Your password cannot contain any spaces."
-        if verify == "" or verify != password: # Verify Password
-            verify_error = "Passwords do not match. Please try again."
-            verify = ""
-        if not username_error and not password_error and not verify_error:
+            password_error = "Password cannot contain any spaces."
+        if password != verify or verify == "":
+            verify_error = "Passwords do not match."
+        if exist:
+            username_error = "Username already taken."
+        if len(username) > 3 and len(password) > 3 and password == verify and not exist:
             new_user = User(username, password)
             db.session.add(new_user)
             db.session.commit()
             session['username'] = username
-            return redirect("/newpost")
+            return redirect('/newpost')
         else:
             return render_template('signup.html',
-                username = username,
-                password = password,
-                verify = verify,
-                username_error = username_error,
-                password_error = password_error,
-                verify_error = verify_error
-        )
+            username=username,
+            username_error=username_error,
+            password_error=password_error,
+            verify_error=verify_error
+            )
 
     return render_template('signup.html')
 
