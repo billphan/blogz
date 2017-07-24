@@ -8,19 +8,17 @@ http://education.launchcode.org/web-fundamentals/assignments/blogz
 ## Changes made to Build-a-Blog:
 
 * Make a Home Page ("/")
-- Display all blog users
-- Use index.html template
-
+* Display all blog users
+* Use index.html template
 * Registered User Integration
-- Adding the following templates: signup.html, login.html, index.html.
-- Add the following route handler functions: signup, login, and index.
-- Add a User class.
-- Add a login function.
-- Add a logout function.
-- Handles a POST request to "/logout" and redirects user to "/blog" after deleting user from session.
-
+* Adding the following templates: signup.html, login.html, index.html.
+* Add the following route handler functions: signup, login, and index.
+* Add a User class.
+* Add a login function.
+* Add a logout function.
+* Handles a POST request to "/logout" and redirects user to "/blog" after deleting user from session.
 * Creating Dynamic User Pages
-- Add a singleUser.html template that will be used to display only the blogs associated with a single given poster. It will be used when we dynamically generate a page using a GET request with a user query parameter on the "/blog" route.
+* Add a singleUser.html template that will be used to display only the blogs associated with a single given poster. It will be used when we dynamically generate a page using a GET request with a user query parameter on the "/blog" route.
 
 # User Scenarios
 
