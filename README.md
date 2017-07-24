@@ -5,11 +5,6 @@ http://education.launchcode.org/web-fundamentals/assignments/blogz
 * A Python/Flask based web app implementation of a blog.  
 * Addition on Build-a-Blog project. Refactor to expand our codebase to make this a multi-user blog site. Add user authentication and verification, users will have individual blog page displaying all posts by that user. Vistors can view blogs by authors, or view all blog posts on the site. We will still maintain the ability to view individual blog entry.
 
-![Alt text](/../master/static/screenshots/1.png?raw=true "Optional Title")
-![Alt text](/../master/static/screenshots/2.png?raw=true "Optional Title")
-![Alt text](/../master/static/screenshots/3.png?raw=true "Optional Title")
-![Alt text](/../master/static/screenshots/4.png?raw=true "Optional Title")
-
 ## Changes made to Build-a-Blog:
 
 * Make a Home Page ("/")
@@ -106,3 +101,10 @@ http://education.launchcode.org/web-fundamentals/assignments/blogz
 * **"/post"** - GET: Display new entry form; POST: Process new entry
 * **"/login"** - GET: Display login screen with form and verification.
 * **"/logout"** - GET: Deletes current user session.
+
+## Screenshots
+
+![Alt text](/../master/static/screenshots/1.png?raw=true "Optional Title")
+![Alt text](/../master/static/screenshots/2.png?raw=true "Optional Title")
+![Alt text](/../master/static/screenshots/3.png?raw=true "Optional Title")
+![Alt text](/../master/static/screenshots/4.png?raw=true "Optional Title")
