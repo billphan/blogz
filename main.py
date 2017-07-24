@@ -123,11 +123,14 @@ def signup():
     return render_template('signup.html')
 
 # Blog route with all user posts.
+# TODO - Paginate Blog posts, limiting to 5 posts per page.
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
     blog_id = request.args.get('id')
     user_id = request.args.get('userid')
     posts = Blog.query.all()
+    # Recent blog posts order to top.
+    # posts = Blog.query.order_by(Blog.pub_date.desc())
 
     if blog_id:
         post = Blog.query.filter_by(id=blog_id).first()
