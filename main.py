@@ -148,6 +148,7 @@ def newpost():
     title = request.form['title']
     body = request.form["body"]
     owner = User.query.filter_by(username=session['username']).first()
+
     title_error = ""
     body_error = ""
 
