@@ -70,7 +70,7 @@ def login():
             session['username'] = username
             return redirect('/newpost')
         if not user:
-            return render_template('login.html', username_error="Your username or password was incorrect.")
+            return render_template('login.html', username_error="Username does not exist.")
         else:
             return render_template('login.html', password_error="Your username or password was incorrect.")
 
@@ -128,9 +128,9 @@ def signup():
 def blog():
     blog_id = request.args.get('id')
     user_id = request.args.get('userid')
-    posts = Blog.query.all()
+    # posts = Blog.query.all()
     # Recent blog posts order to top.
-    # posts = Blog.query.order_by(Blog.pub_date.desc())
+    posts = Blog.query.order_by(Blog.pub_date.desc())
 
     if blog_id:
         post = Blog.query.filter_by(id=blog_id).first()

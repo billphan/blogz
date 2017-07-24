@@ -7,6 +7,10 @@
   background: #95c76f;
 }
 
+.error {
+  width: 100%;
+}
+
 p.error {
   color: #aeaeae;
   display: block;
@@ -294,11 +298,13 @@ input[type=submit]:hover {
 
 .container .login p {
   font-size: 14px;
-  text-align: center;
+  text-align: left;
+  padding-left: 5px;
 }
 
-p.signup-text {
+.login p.signup-text {
   padding-top: 20px;
+  text-align: center;
 }
 
 /* NEW POST PAGE */
