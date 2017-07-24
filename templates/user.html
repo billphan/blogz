@@ -3,7 +3,7 @@
 {% block content %}
       <div class="single-user wow fadeIn">
 
-        <h1>Blog Posts</h1>
+        <h1>User Posts</h1>
 
         <hr>
         {% for entry in entries %}
@@ -11,7 +11,7 @@
 
           <a href="/blog?id={{entry.id}}"><h2>{{ entry.title }}</h2></a>
           <p class="body-text">{{ entry.body }}</p>
-          <p class="pub-date">{{ entry.pub_date }}</p>
+          <p class="pub-date">Posted on: {{ entry.pub_date }}</p>
           <p class="user">Posted by: <a href="/blog?userid={{entry.owner_id}}">{{ entry.owner.username }}</a></p>
 
         </div>

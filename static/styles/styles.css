@@ -1,5 +1,4 @@
 /*  GLOBAL/BASE STYLES  */
-
 :root {
   --accent: #95c76f;
 }
@@ -32,7 +31,8 @@ html, body {
   position: relative;
   rgba(255,255,255,0.1);
   background-color: #fffdf8;
-  font: -apple-system, BlinkMacSystemFont,SF UI, Helvetica Neue, sans-serif;
+  font-family: 'NeueHaasGrotesk-Regular', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
+  /*font: -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;*/
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -51,6 +51,14 @@ a:focus, a:hover {
   -ms-transition: 0.25s ease-in-out;
   -moz-transition: 0.25s ease-in-out;
   -webkit-transition: 0.25s ease-in-out;
+}
+
+h2 {
+  color: #95c76f;
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
 }
 
 .left {
@@ -72,15 +80,18 @@ a:focus, a:hover {
 }
 
 .title {
-  font-size: 1.5rem;
   font-weight: 400;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
   border-bottom: 1px solid;
 }
 
 h1.title {
   font-size: 28px;
   line-height: 2em;
+  font-weight: 500;
   text-decoration: none;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
 }
 
 .container {
@@ -98,13 +109,15 @@ h1.title {
 }
 
 .post {
-  width: 100%;
   height: auto;
-  margin: 40px 0;
+  margin: 50px 0;
 }
 
 .post h2 {
   color: #95c76f;
+  font-weight: 500;
+  letter-spacing: 0px;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
 }
 
 .post h2:hover {
@@ -138,7 +151,6 @@ p.user {
 }
 
 /* INDEX PAGE STYLES */
-
 .index {
   clear: both;
   width: 100%;
@@ -158,7 +170,6 @@ p.user {
 }
 
 /* BLOG PAGE STYLES */
-
 .blog {
   clear: both;
   width: 100%;
@@ -181,10 +192,11 @@ p.user {
 
 .blog h2 {
   font-size: 24px;
+  font-weight: 500;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
 }
 
 /* POST PAGE STYLES */
-
 h1.post-header {
   margin: 0;
   padding: 0 0 25px 0;
@@ -267,7 +279,6 @@ input[type=submit]:hover {
 }
 
 /* LOGIN PAGE STYLES */
-
 .container .login {
   width: 300px;
   display: block;
@@ -291,7 +302,6 @@ p.signup-text {
 }
 
 /* NEW POST PAGE */
-
 .new-post {
   clear: both;
   width: 100%;
@@ -306,7 +316,6 @@ p.signup-text {
 }
 
 /* SIGNUP PAGE STYLES */
-
 .container .signup {
   width: 340px;
   display: block;
@@ -330,7 +339,6 @@ p.signup-text {
 }
 
 /* INDIVIDUAL USERS PAGE STYLES */
-
 .single-user {
   clear: both;
   width: 100%;
@@ -366,7 +374,6 @@ p.signup-text {
 }
 
 /* MEDIA QUERIES */
-
 @media (max-width:720px) {
 
   .container {
