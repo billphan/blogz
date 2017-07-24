@@ -1,5 +1,6 @@
 # blogz
 LC101 assignment
+
 http://education.launchcode.org/web-fundamentals/assignments/blogz
 
 * A Python/Flask based web app implementation of a blog.  
